@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String iconsIcLauncher = 'G:/Documents/fajarproject/Fema_Flutter/assets/icons/ic_launcher.png';
   static const String imagesBg = 'G:/Documents/fajarproject/Fema_Flutter/assets/images/bg.png';
   static const String imagesBgLogin = 'G:/Documents/fajarproject/Fema_Flutter/assets/images/bg_login.png';
   static const String imagesLogoHorizontal = 'G:/Documents/fajarproject/Fema_Flutter/assets/images/logo_horizontal.png';
