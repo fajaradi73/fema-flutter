@@ -1,6 +1,7 @@
 import 'package:fema_flutter/login/model/User.dart';
 import 'package:fema_flutter/login/presenter/LoginPresenter.dart';
 import 'package:fema_flutter/login/screen/LoginView.dart';
+import 'package:fema_flutter/screen/home/HomeScreen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -175,7 +176,13 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   @override
   void submitLogin() {
     isLogin = false;
-    presenter.doLogin(username, password);
+    // presenter.doLogin(username, password);
+    moveToHome();
     setState(() {});
+  }
+
+  void moveToHome() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 }

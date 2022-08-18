@@ -12,10 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          primaryColor: Colors.purpleAccent.shade400,
+          primaryColor: Colors.blue,
           colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: const Color.fromRGBO(28, 117, 188, 100),
-            secondary: Colors.purpleAccent.shade700,
+            primary: const Color.fromRGBO(30, 120, 180, 30),
+            secondary: const Color.fromRGBO(30, 120, 180, 30),
           )),
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
