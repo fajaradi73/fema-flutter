@@ -1,9 +1,9 @@
-import 'package:fema_flutter/login/screen/LoginScreen.dart';
+import 'package:fema_flutter/screen/login/view/LoginScreen.dart';
 import 'package:fema_flutter/model/Preference/AppPreference.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../screen/home/HomeScreen.dart';
+import '../screen/home/view/HomeScreen.dart';
 
 class PermissionHandlerScreen extends StatefulWidget {
   const PermissionHandlerScreen({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 
-import 'package:fema_flutter/login/model/User.dart';
+import 'package:fema_flutter/screen/login/model/User.dart';
 
 class LoginView{
   void successLogin(User user){}

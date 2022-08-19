@@ -1,11 +1,13 @@
-import 'package:fema_flutter/login/model/User.dart';
-import 'package:fema_flutter/login/presenter/LoginPresenter.dart';
-import 'package:fema_flutter/login/screen/LoginView.dart';
-import 'package:fema_flutter/screen/home/HomeScreen.dart';
+// ignore_for_file: file_names
+
+import 'package:fema_flutter/screen/login/model/User.dart';
+import 'package:fema_flutter/screen/login/presenter/LoginPresenter.dart';
+import 'package:fema_flutter/screen/login/view/LoginView.dart';
+import '../../home/view/HomeScreen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../widget/LoadingDialog.dart';
+import '../../../widget/LoadingDialog.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

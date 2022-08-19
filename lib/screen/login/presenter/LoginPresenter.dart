@@ -1,11 +1,12 @@
-import 'dart:convert';
+// ignore_for_file: file_names
 
-import 'package:fema_flutter/login/model/User.dart';
+import 'dart:convert';
 import 'package:http/http.dart';
 
-import '../../model/Preference/AppPreference.dart';
-import '../../network/Auth.dart';
-import '../screen/LoginView.dart';
+import 'package:fema_flutter/screen/login/model/User.dart';
+import '../../../model/Preference/AppPreference.dart';
+import '../../../network/Auth.dart';
+import 'package:fema_flutter/screen/login/view/LoginView.dart';
 
 class LoginPresenter {
   void doLogin(String username, String password) {}

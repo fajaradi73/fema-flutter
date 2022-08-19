@@ -1,8 +1,9 @@
 // ignore_for_file: file_names
 
-import 'dart:ffi';
-
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fema_flutter/screen/home/presenter/HomePresenter.dart';
+import 'package:fema_flutter/screen/home/view/HomeView.dart';
+import 'package:fema_flutter/screen/profil/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,9 +13,17 @@ class HomeScreen extends StatefulWidget {
   State<StatefulWidget> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> implements HomeView {
   int _current = 0;
   final CarouselController _controller = CarouselController();
+  late HomePresenter presenter;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    presenter = BasicHomePresenter(this);
+  }
 
   var imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -30,10 +39,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: titleBar(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height:300 ,child: carouselSlider(),),
-          ],
+        child: Container(
+          decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/bg_empty.png"),fit: BoxFit.cover)),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 300,
+                child: carouselSlider(),
+              ),
+              menu()
+            ],
+          ),
         ),
       ),
     );
@@ -108,8 +124,8 @@ class _HomeScreenState extends State<HomeScreen> {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: (Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.black)
+                          ? Colors.black
+                          : Colors.white)
                       .withOpacity(_current == entry.key ? 0.9 : 0.4)),
             ),
           );
@@ -135,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       actions: [
         IconButton(
-            onPressed: () {},
+            onPressed: moveToProfile,
             icon: const Image(
               image: AssetImage("assets/icons/ic_user.png"),
               height: 30,
@@ -143,17 +159,62 @@ class _HomeScreenState extends State<HomeScreen> {
               fit: BoxFit.fill,
             ))
       ],
-      title: InkWell(
-        onTap: () {},
-        child: Container(
-          alignment: Alignment.center,
-          child: const Image(
-            image: AssetImage("assets/images/logo_horizontal.png"),
-            fit: BoxFit.fill,
-            height: 35,
-          ),
+      title: Container(
+        alignment: Alignment.center,
+        child: const Image(
+          image: AssetImage("assets/images/logo_horizontal.png"),
+          fit: BoxFit.fill,
+          height: 35,
         ),
       ),
     );
+  }
+
+  menu() {
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      padding: const EdgeInsets.all(10.0),
+      child: GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 15,
+              crossAxisSpacing: 15,
+              childAspectRatio: 2 / 2.8),
+          itemCount: presenter.getMenu(true).length,
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                onClick(index);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.purpleAccent.shade400,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height / 6.5,
+                    width: MediaQuery.of(context).size.width / 4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(presenter.getMenu(false)[index]),
+                            fit: BoxFit.scaleDown),
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                  Text(
+                    presenter.getMenu(true)[index],
+                    style: const TextStyle(color: Colors.white),
+                  )
+                ]),
+              ),
+            );
+          }),
+    );
+  }
+
+  void onClick(int index) {}
+
+  void moveToProfile(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
   }
 }
