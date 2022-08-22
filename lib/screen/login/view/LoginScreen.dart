@@ -178,8 +178,8 @@ class _LoginScreenState extends State<LoginScreen> implements LoginView {
   @override
   void submitLogin() {
     isLogin = false;
-    // presenter.doLogin(username, password);
-    moveToHome();
+    presenter.doLogin(username, password);
+    // moveToHome();
     setState(() {});
   }
 

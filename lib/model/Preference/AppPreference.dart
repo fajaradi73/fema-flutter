@@ -39,6 +39,19 @@ getPreferenceDouble(String key) async {
   return _prefs.then((value) => prefs.getDouble(key) ?? 0.0);
 }
 
+Future<int> getTheme() async {
+  return await getPreferenceInt("theme");
+}
+
+deleteUser() async{
+  final SharedPreferences prefs = await _prefs;
+  prefs.remove("user");
+}
+
+setTheme(color) {
+  writePreferenceInt("theme", color);
+}
+
 getPreferenceString(String key) async {
   final SharedPreferences prefs = await _prefs;
   return _prefs.then((value) => prefs.getString(key) ?? "");

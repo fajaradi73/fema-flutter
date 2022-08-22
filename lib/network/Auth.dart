@@ -12,4 +12,9 @@ class Auth {
         },
         body: {'username': username, 'password': password});
   }
+
+  static Future getEmployeeInformation(String token){
+    return http.get(Uri.parse("${Constant.baseUrl}/fema-personal-service/api/personal_information/getEmployeeInformation"),
+    headers: {'X-Auth-Token': token});
+  }
 }

@@ -37,6 +37,8 @@ class BasicLoginPresenter implements LoginPresenter {
   @override
   void saveUser(user) {
     String json = jsonEncode(user);
+    print(json);
     writePreferenceString("user", json);
+    view.moveToHome();
   }
 }

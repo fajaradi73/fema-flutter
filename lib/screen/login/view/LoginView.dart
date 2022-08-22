@@ -7,4 +7,5 @@ class LoginView{
   bodyForm(){}
   void submitLogin(){}
   buttonSubmit(){}
+  moveToHome(){}
 }
